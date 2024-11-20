@@ -23,8 +23,8 @@ function object2field(e,o,args,opt) {
 	var obj = f[i];
 	var arg, chk, key, val;
 	var reg = new RegExp("(.*) *["+d+"] *(.*)");
-	for(var x=2; x<arguments.length; x++){
-		arg = arguments[x];
+	for(var x=2; x<args.length; x++){
+		arg = args[x];
 		chk = !!arg.match(reg);
 		if(chk) {
 			[chk, key, val] = arg.match(reg);

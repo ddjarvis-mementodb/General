@@ -7,6 +7,7 @@
 	opt  = Additional Options Object
 	opt.delim = Delimiter Str // Default: |
 	opt.clear = Clear Src Bool // Default: false
+	opt.extra = Extra Props Obj // Default: {}
 	opt.index = Target Index // Default: object length
 =====================================================================
 */
@@ -19,6 +20,7 @@ function field2object(e,o,args,opt) {
 	var d = opt.delim || "|";
 	var c = (opt.clear===undefined) ? false : opt.clear;
 	var i = (!!opt.index && opt.index<f.length) ? opt.index : f.length;
+	var ex = opt.extra || {};
 	
 	var obj = {};
 	var arg, chk, key, val;
@@ -34,6 +36,10 @@ function field2object(e,o,args,opt) {
 		}
 		obj[key] = e.field(val);
 		if(c) { e.set(val,''); }
+	}
+	var keys = Object.keys(ex);
+	if(keys.length>0) {
+		keys.forEach(k => obj[k] = ex[k]);
 	}
 	f[i] = obj;
 	e.set(o, f);
