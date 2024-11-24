@@ -1,4 +1,4 @@
-function dialogButton(input) {
+function createDialog_dialogButton(input) {
 	if(input===false) { return false; }
 	if(input===0) { return false; }
 	if(input==="0") { return false; }
@@ -46,9 +46,9 @@ function dialogButton(input) {
 function createDialog(title,text,posi,nega,neut) {
 	title = title || "MementoDB Dialog";
 	text = text || "MementoDB dialog text.";
-	posi = dialogButton(posi);
-	nega = dialogButton(nega);
-	neut = dialogButton(neut);
+	posi = createDialog_dialogButton(posi);
+	nega = createDialog_dialogButton(nega);
+	neut = createDialog_dialogButton(neut);
 	
 	var myDialog = dialog().title(title).text(text);
 	if(!!posi){ myDialog.positiveButton(posi.text, posi.fn); }
