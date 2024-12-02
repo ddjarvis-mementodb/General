@@ -25,7 +25,7 @@ function addLog(entry,histField,logTitle,fields) {
 	if(history[history.length-1]["Description"]==desc){ exit(); }
 	
 	newlog = {};
-	newlog["Title"] = title;
+	newlog["Name"] = title;
 	newlog["Description"] = desc;
 	fields.forEach(arr => _copyField(arr));
 	
