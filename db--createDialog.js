@@ -39,7 +39,7 @@ function createDialog_dialogButton(input) {
 			// CRITICAL FIX: Wrap the custom function so it receives the arguments
 			output.fn = function() {
 				let ret = input.fn.apply(null, args);
-log(`fn ret: ${ret}`);
+				return true;
 			};
 		} else {
 			// Fallback if no function was provided
