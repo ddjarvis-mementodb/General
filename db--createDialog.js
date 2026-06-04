@@ -38,7 +38,8 @@ function createDialog_dialogButton(input) {
 		if (typeof input.fn === "function") {
 			// CRITICAL FIX: Wrap the custom function so it receives the arguments
 			output.fn = function() {
-				return input.fn.apply(null, args);
+				input.fn.apply(null, args);
+				return true;
 			};
 		} else {
 			// Fallback if no function was provided
