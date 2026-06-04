@@ -60,5 +60,6 @@ function createDialog(title, text, posi, nega, neut) {
 	if(!!nega){ myDialog.negativeButton(nega.text, nega.fn); }
 	if(!!neut){ myDialog.neutralButton(neut.text, neut.fn); }
 	myDialog.show();
+log(`dialog: ${myDialog}`);
 	return true;
 }
