@@ -38,7 +38,8 @@ function createDialog_dialogButton(input) {
 		if (typeof input.fn === "function") {
 			// CRITICAL FIX: Wrap the custom function so it receives the arguments
 			output.fn = function() {
-				return input.fn.apply(null, args);
+				let ret = input.fn.apply(null, args);
+log(`fn ret: ${ret}`);
 			};
 		} else {
 			// Fallback if no function was provided
@@ -59,7 +60,7 @@ function createDialog(title, text, posi, nega, neut) {
 	if(!!posi){ myDialog.positiveButton(posi.text, posi.fn); }
 	if(!!nega){ myDialog.negativeButton(nega.text, nega.fn); }
 	if(!!neut){ myDialog.neutralButton(neut.text, neut.fn); }
-	myDialog.show();
-log(`dialog: ${myDialog}`);
+	let ret = myDialog.show();
+log(`dialog: ${myDialog}\nret: ${ret}`);
 	return true;
 }
