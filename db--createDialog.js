@@ -1,5 +1,4 @@
 function createDialog_dialogButton(input) {
-	// Early exit for falsy/zero inputs
 	if (input === false || input === 0 || input === "0") { return false; }
 	
 	var type, text, fn, args;
@@ -31,18 +30,14 @@ function createDialog_dialogButton(input) {
 	
 	if (typeof input === "object") {
 		output.text = (!!input.text) ? input.text : "btn";
-		
-		// Capture args if provided, default to empty array
 		args = Array.isArray(input.args) ? input.args : [];
 		
 		if (typeof input.fn === "function") {
-			// CRITICAL FIX: Wrap the custom function so it receives the arguments
 			output.fn = function() {
-				let ret = input.fn.apply(null, args);
-				return true;
+				// Capture what the custom button function returns (e.g., true)
+				return input.fn.apply(null, args); 
 			};
 		} else {
-			// Fallback if no function was provided
 			output.fn = function() { message("Button [" + output.text + "] was triggered."); };
 		}
 		return output;
@@ -60,6 +55,9 @@ function createDialog(title, text, posi, nega, neut) {
 	if(!!posi){ myDialog.positiveButton(posi.text, posi.fn); }
 	if(!!nega){ myDialog.negativeButton(nega.text, nega.fn); }
 	if(!!neut){ myDialog.neutralButton(neut.text, neut.fn); }
-	let ret = myDialog.show();
-	return {myDialog, ret};
+	
+	// Because Memento dialogs block execution, 'ret' will capture 
+	// whatever the clicked button's function returns!
+	let ret = myDialog.show(); 
+	return ret; 
 }
